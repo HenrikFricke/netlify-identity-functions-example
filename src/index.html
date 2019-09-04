@@ -13,5 +13,24 @@
    Username / Log out - when the user is logged in
   -->
     <div data-netlify-identity-menu></div>
+
+    <button id="clickme">Click me</button>
+    <script type="text/javascript">
+      document.getElementById("clickme").addEventListener("click", () => {
+        const user = netlifyIdentity.currentUser();
+
+        if (!user) {
+          return;
+        }
+
+        const token = user.token.access_token;
+
+        fetch(".netlify/functions/helloworld.js", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      });
+    </script>
   </body>
 </html>
