@@ -25,7 +25,7 @@
 
         const token = user.token.access_token;
 
-        fetch(".netlify/functions/helloworld.js", {
+        fetch(".netlify/functions/helloworld", {
           headers: {
             Authorization: `Bearer ${token}`
           }
