@@ -1,8 +1,11 @@
 exports.handler = function(event, context, callback) {
   console.log("Event", event);
 
-  const { identity, user } = context.clientContext;
-  console.log("Hello", identity, user);
+  const { user } = context.clientContext;
+  console.log("Hello", user);
 
-  callback();
+  callback(null, {
+    statusCode: user ? 200 : 401,
+    body: "Hello, World"
+  });
 };
